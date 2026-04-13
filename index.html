@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CassCanva – A5 Flyer Creator</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body class="landing">
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="#7C3AED"/>
+          <path d="M8 22 L14 10 L20 18 L23 14 L28 22 Z" fill="white" opacity=".9"/>
+          <circle cx="10" cy="13" r="2.5" fill="#F9A8D4"/>
+        </svg>
+        <span>CassCanva</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#templates">Templates</a>
+        <a href="editor.html" class="btn-primary">Start Designing →</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">✨ Free A5 Flyer Creator</div>
+      <h1 class="hero-title">Design stunning<br/><span class="gradient-text">A5 flyers</span> in minutes</h1>
+      <p class="hero-sub">A browser-based design tool. No downloads, no account required.<br/>Drag, drop, and create beautiful flyers like a pro.</p>
+      <div class="hero-actions">
+        <a href="editor.html" class="btn-primary btn-lg">Create a Flyer</a>
+        <a href="#templates" class="btn-outline btn-lg">Browse Templates</a>
+      </div>
+      <div class="hero-preview">
+        <img src="assets/hero-preview.svg" alt="Flyer editor preview" onerror="this.style.display='none'" />
+        <div class="hero-canvas-demo">
+          <div class="demo-card demo-card-1">
+            <div class="demo-card-color" style="background:#7C3AED"></div>
+            <div class="demo-card-lines">
+              <div></div><div></div><div style="width:60%"></div>
+            </div>
+          </div>
+          <div class="demo-card demo-card-2">
+            <div class="demo-card-color" style="background:#F59E0B"></div>
+            <div class="demo-card-lines">
+              <div></div><div></div><div style="width:70%"></div>
+            </div>
+          </div>
+          <div class="demo-card demo-card-3">
+            <div class="demo-card-color" style="background:#10B981"></div>
+            <div class="demo-card-lines">
+              <div></div><div></div><div style="width:55%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="section-inner">
+      <h2 class="section-title">Everything you need to create<br/>amazing flyers</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon" style="background:#EDE9FE;color:#7C3AED">✏️</div>
+          <h3>Rich Text Editing</h3>
+          <p>Add and style text with fonts, sizes, colors, bold, italic and alignment.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background:#FEF3C7;color:#D97706">⬛</div>
+          <h3>Shapes &amp; Lines</h3>
+          <p>Insert rectangles, circles, triangles and lines to give structure to your layout.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background:#D1FAE5;color:#059669">🖼️</div>
+          <h3>Image Upload</h3>
+          <p>Upload your own photos and logos directly into the flyer canvas.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background:#FCE7F3;color:#DB2777">🎨</div>
+          <h3>Backgrounds</h3>
+          <p>Pick solid colors or linear gradients as your flyer background.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background:#DBEAFE;color:#2563EB">⬇️</div>
+          <h3>Export as PNG</h3>
+          <p>Download your finished flyer as a high-quality PNG image instantly.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background:#F3F4F6;color:#374151">📐</div>
+          <h3>True A5 Format</h3>
+          <p>Canvas is sized to exact A5 proportions (148 × 210 mm) for print-ready output.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEMPLATES -->
+  <section class="templates-section" id="templates">
+    <div class="section-inner">
+      <h2 class="section-title">Start with a template</h2>
+      <p class="section-sub">Click any template to open it in the editor.</p>
+      <div class="templates-grid">
+        <a href="editor.html?tpl=event" class="tpl-card">
+          <div class="tpl-preview" style="background:linear-gradient(135deg,#7C3AED,#DB2777)">
+            <div class="tpl-title-block">
+              <div class="tpl-line big"></div>
+              <div class="tpl-line med"></div>
+              <div class="tpl-line sm"></div>
+            </div>
+          </div>
+          <span>Event Flyer</span>
+        </a>
+        <a href="editor.html?tpl=sale" class="tpl-card">
+          <div class="tpl-preview" style="background:linear-gradient(135deg,#F59E0B,#EF4444)">
+            <div class="tpl-title-block">
+              <div class="tpl-line big"></div>
+              <div class="tpl-line med"></div>
+              <div class="tpl-line sm"></div>
+            </div>
+          </div>
+          <span>Sale &amp; Promo</span>
+        </a>
+        <a href="editor.html?tpl=party" class="tpl-card">
+          <div class="tpl-preview" style="background:linear-gradient(135deg,#10B981,#3B82F6)">
+            <div class="tpl-title-block">
+              <div class="tpl-line big"></div>
+              <div class="tpl-line med"></div>
+              <div class="tpl-line sm"></div>
+            </div>
+          </div>
+          <span>Party Invite</span>
+        </a>
+        <a href="editor.html?tpl=business" class="tpl-card">
+          <div class="tpl-preview" style="background:linear-gradient(135deg,#1E3A5F,#0EA5E9)">
+            <div class="tpl-title-block">
+              <div class="tpl-line big"></div>
+              <div class="tpl-line med"></div>
+              <div class="tpl-line sm"></div>
+            </div>
+          </div>
+          <span>Business</span>
+        </a>
+        <a href="editor.html?tpl=minimal" class="tpl-card">
+          <div class="tpl-preview" style="background:#F8FAFC;border:1px solid #E2E8F0">
+            <div class="tpl-title-block">
+              <div class="tpl-line big" style="background:#1E293B"></div>
+              <div class="tpl-line med" style="background:#64748B"></div>
+              <div class="tpl-line sm" style="background:#CBD5E1"></div>
+            </div>
+          </div>
+          <span>Minimal</span>
+        </a>
+        <a href="editor.html" class="tpl-card tpl-blank">
+          <div class="tpl-preview" style="background:#F1F5F9;display:flex;align-items:center;justify-content:center">
+            <span style="font-size:2.5rem;opacity:.4">+</span>
+          </div>
+          <span>Blank Canvas</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <a href="index.html" class="logo">
+        <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="#7C3AED"/>
+          <path d="M8 22 L14 10 L20 18 L23 14 L28 22 Z" fill="white" opacity=".9"/>
+          <circle cx="10" cy="13" r="2.5" fill="#F9A8D4"/>
+        </svg>
+        <span>CassCanva</span>
+      </a>
+      <p>A free, browser-based A5 flyer creator. No sign-up required.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
