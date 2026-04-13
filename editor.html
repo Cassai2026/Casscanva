@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CassCanva Editor – A5 Flyer</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;700;800&family=Oswald:wght@400;600&family=Lato:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- html2canvas for PNG export (bundled locally) -->
+  <script src="js/html2canvas.min.js" defer></script>
+  <script src="js/editor.js" defer></script>
+</head>
+<body class="editor-page">
+
+  <!-- TOP BAR -->
+  <header class="editor-topbar">
+    <a href="index.html" class="logo logo-sm">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+        <rect width="32" height="32" rx="8" fill="#7C3AED"/>
+        <path d="M8 22 L14 10 L20 18 L23 14 L28 22 Z" fill="white" opacity=".9"/>
+        <circle cx="10" cy="13" r="2.5" fill="#F9A8D4"/>
+      </svg>
+      <span>CassCanva</span>
+    </a>
+
+    <div class="topbar-center">
+      <input id="flyer-title" class="flyer-title-input" value="My A5 Flyer" spellcheck="false" aria-label="Flyer title" />
+    </div>
+
+    <div class="topbar-actions">
+      <button id="btn-undo" class="tb-btn" title="Undo (Ctrl+Z)">
+        <svg viewBox="0 0 20 20" fill="currentColor" width="18"><path fill-rule="evenodd" d="M9.707 3.293a1 1 0 010 1.414L7.414 7H13a5 5 0 010 10H7a1 1 0 110-2h6a3 3 0 000-6H7.414l2.293 2.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+      </button>
+      <button id="btn-redo" class="tb-btn" title="Redo (Ctrl+Y)">
+        <svg viewBox="0 0 20 20" fill="currentColor" width="18"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 9H7a3 3 0 000 6h6a1 1 0 110 2H7a5 5 0 010-10h5.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+      </button>
+      <button id="btn-download" class="tb-btn btn-download" title="Export as PNG">
+        <svg viewBox="0 0 20 20" fill="currentColor" width="18"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+        Export PNG
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="editor-layout">
+
+    <!-- LEFT SIDEBAR: TOOLS -->
+    <aside class="sidebar-left">
+      <button class="tool-btn active" data-tool="select" title="Select / Move (V)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20">
+          <path d="M5 3l14 9-7 1-4 7z"/>
+        </svg>
+        <span>Select</span>
+      </button>
+      <button class="tool-btn" data-tool="text" title="Add Text (T)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20">
+          <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+        </svg>
+        <span>Text</span>
+      </button>
+      <button class="tool-btn" data-tool="rect" title="Rectangle (R)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20">
+          <rect x="3" y="5" width="18" height="14" rx="1"/>
+        </svg>
+        <span>Rect</span>
+      </button>
+      <button class="tool-btn" data-tool="circle" title="Circle (C)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20">
+          <circle cx="12" cy="12" r="9"/>
+        </svg>
+        <span>Circle</span>
+      </button>
+      <button class="tool-btn" data-tool="triangle" title="Triangle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20">
+          <path d="M12 4 L21 20 L3 20 Z"/>
+        </svg>
+        <span>Triangle</span>
+      </button>
+      <button class="tool-btn" data-tool="line" title="Line (L)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20">
+          <line x1="4" y1="20" x2="20" y2="4"/>
+        </svg>
+        <span>Line</span>
+      </button>
+      <button class="tool-btn" data-tool="image" title="Upload Image (I)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+          <path d="M21 15l-5-5L5 21"/>
+        </svg>
+        <span>Image</span>
+      </button>
+      <div class="sidebar-divider"></div>
+      <button class="tool-btn" data-tool="background" title="Background">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20">
+          <path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 2v20M2 12h20"/>
+        </svg>
+        <span>BG</span>
+      </button>
+      <div class="sidebar-divider"></div>
+      <button class="tool-btn" id="btn-delete-el" title="Delete selected (Del)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20">
+          <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
+          <path d="M10 11v6M14 11v6M9 6V4h6v2"/>
+        </svg>
+        <span>Delete</span>
+      </button>
+    </aside>
+
+    <!-- CANVAS AREA -->
+    <main class="canvas-area">
+      <div class="canvas-scroll">
+        <div id="canvas-wrapper">
+          <div id="canvas" role="region" aria-label="Flyer canvas">
+            <!-- elements are injected here by JS -->
+          </div>
+          <!-- resize handles (injected per-selection by JS) -->
+        </div>
+      </div>
+      <!-- zoom controls -->
+      <div class="zoom-controls">
+        <button id="btn-zoom-out" class="zoom-btn" title="Zoom out">−</button>
+        <span id="zoom-label">100%</span>
+        <button id="btn-zoom-in" class="zoom-btn" title="Zoom in">+</button>
+        <button id="btn-zoom-fit" class="zoom-btn" title="Fit to screen">⊡</button>
+      </div>
+    </main>
+
+    <!-- RIGHT SIDEBAR: PROPERTIES -->
+    <aside class="sidebar-right" id="sidebar-right">
+
+      <!-- Text properties -->
+      <div class="prop-section" id="props-text" style="display:none">
+        <div class="prop-title">Text</div>
+        <div class="prop-row">
+          <label>Font</label>
+          <select id="prop-font-family">
+            <option value="Inter">Inter</option>
+            <option value="Playfair Display">Playfair Display</option>
+            <option value="Montserrat">Montserrat</option>
+            <option value="Oswald">Oswald</option>
+            <option value="Lato">Lato</option>
+            <option value="Roboto">Roboto</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Arial">Arial</option>
+            <option value="Impact">Impact</option>
+          </select>
+        </div>
+        <div class="prop-row">
+          <label>Size</label>
+          <input type="number" id="prop-font-size" value="24" min="6" max="200" />
+          <span class="unit">px</span>
+        </div>
+        <div class="prop-row">
+          <label>Color</label>
+          <input type="color" id="prop-font-color" value="#1E293B" />
+        </div>
+        <div class="prop-row">
+          <label>Align</label>
+          <div class="btn-group">
+            <button class="align-btn" data-align="left" title="Align left">&#8676;</button>
+            <button class="align-btn" data-align="center" title="Center">&#8677;</button>
+            <button class="align-btn" data-align="right" title="Align right">&#8677;</button>
+          </div>
+        </div>
+        <div class="prop-row">
+          <label>Style</label>
+          <div class="btn-group">
+            <button class="style-btn" data-style="bold" title="Bold"><b>B</b></button>
+            <button class="style-btn" data-style="italic" title="Italic"><i>I</i></button>
+            <button class="style-btn" data-style="underline" title="Underline"><u>U</u></button>
+          </div>
+        </div>
+        <div class="prop-row">
+          <label>Line H.</label>
+          <input type="number" id="prop-line-height" value="1.2" min="0.8" max="3" step="0.1" />
+        </div>
+        <div class="prop-row">
+          <label>Opacity</label>
+          <input type="range" id="prop-text-opacity" min="0" max="100" value="100" />
+          <span id="prop-text-opacity-val" class="unit">100%</span>
+        </div>
+      </div>
+
+      <!-- Shape properties -->
+      <div class="prop-section" id="props-shape" style="display:none">
+        <div class="prop-title">Shape</div>
+        <div class="prop-row">
+          <label>Fill</label>
+          <input type="color" id="prop-shape-fill" value="#7C3AED" />
+          <label class="small-label" style="margin-left:8px">
+            <input type="checkbox" id="prop-shape-fill-none" />
+            None
+          </label>
+        </div>
+        <div class="prop-row">
+          <label>Stroke</label>
+          <input type="color" id="prop-shape-stroke" value="#7C3AED" />
+        </div>
+        <div class="prop-row">
+          <label>Stroke W.</label>
+          <input type="number" id="prop-shape-stroke-width" value="0" min="0" max="20" />
+          <span class="unit">px</span>
+        </div>
+        <div class="prop-row">
+          <label>Radius</label>
+          <input type="number" id="prop-shape-radius" value="0" min="0" max="100" />
+          <span class="unit">px</span>
+        </div>
+        <div class="prop-row">
+          <label>Opacity</label>
+          <input type="range" id="prop-shape-opacity" min="0" max="100" value="100" />
+          <span id="prop-shape-opacity-val" class="unit">100%</span>
+        </div>
+      </div>
+
+      <!-- Image properties -->
+      <div class="prop-section" id="props-image" style="display:none">
+        <div class="prop-title">Image</div>
+        <div class="prop-row">
+          <label>Opacity</label>
+          <input type="range" id="prop-img-opacity" min="0" max="100" value="100" />
+          <span id="prop-img-opacity-val" class="unit">100%</span>
+        </div>
+        <div class="prop-row">
+          <label>Fit</label>
+          <select id="prop-img-fit">
+            <option value="cover">Cover</option>
+            <option value="contain">Contain</option>
+            <option value="fill">Fill</option>
+          </select>
+        </div>
+        <div class="prop-row">
+          <label>Radius</label>
+          <input type="number" id="prop-img-radius" value="0" min="0" max="100" />
+          <span class="unit">px</span>
+        </div>
+      </div>
+
+      <!-- Position / Size (all elements) -->
+      <div class="prop-section" id="props-transform" style="display:none">
+        <div class="prop-title">Position &amp; Size</div>
+        <div class="prop-row">
+          <label>X</label>
+          <input type="number" id="prop-x" value="0" />
+          <span class="unit">px</span>
+        </div>
+        <div class="prop-row">
+          <label>Y</label>
+          <input type="number" id="prop-y" value="0" />
+          <span class="unit">px</span>
+        </div>
+        <div class="prop-row">
+          <label>W</label>
+          <input type="number" id="prop-w" value="200" min="10" />
+          <span class="unit">px</span>
+        </div>
+        <div class="prop-row">
+          <label>H</label>
+          <input type="number" id="prop-h" value="100" min="10" />
+          <span class="unit">px</span>
+        </div>
+        <div class="prop-row">
+          <label>Rotate</label>
+          <input type="number" id="prop-rotation" value="0" min="-180" max="180" />
+          <span class="unit">°</span>
+        </div>
+        <div class="prop-row prop-row-btns">
+          <button class="layer-btn" id="btn-bring-front" title="Bring to front">▲ Front</button>
+          <button class="layer-btn" id="btn-send-back" title="Send to back">▼ Back</button>
+        </div>
+      </div>
+
+      <!-- Background properties -->
+      <div class="prop-section" id="props-background" style="display:none">
+        <div class="prop-title">Background</div>
+        <div class="prop-row">
+          <label>Type</label>
+          <select id="prop-bg-type">
+            <option value="solid">Solid</option>
+            <option value="gradient">Gradient</option>
+          </select>
+        </div>
+        <div class="prop-row" id="bg-solid-row">
+          <label>Color</label>
+          <input type="color" id="prop-bg-color" value="#ffffff" />
+        </div>
+        <div id="bg-gradient-rows" style="display:none">
+          <div class="prop-row">
+            <label>Color 1</label>
+            <input type="color" id="prop-bg-grad1" value="#7C3AED" />
+          </div>
+          <div class="prop-row">
+            <label>Color 2</label>
+            <input type="color" id="prop-bg-grad2" value="#DB2777" />
+          </div>
+          <div class="prop-row">
+            <label>Angle</label>
+            <input type="number" id="prop-bg-angle" value="135" min="0" max="360" />
+            <span class="unit">°</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Default / no selection -->
+      <div class="prop-section" id="props-default">
+        <div class="prop-title">Properties</div>
+        <p class="prop-hint">Select an element on the canvas to edit its properties, or choose a tool from the left sidebar to add elements.</p>
+        <button class="full-btn" id="btn-bg-quick">🎨 Change Background</button>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- Hidden file input for image upload -->
+  <input type="file" id="image-upload-input" accept="image/*" style="display:none" />
+
+</body>
+</html>
