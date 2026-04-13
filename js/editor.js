@@ -196,7 +196,11 @@ function buildNode(el) {
     node = document.createElement('div');
     node.className = 'canvas-el text-el';
     node.contentEditable = 'false';
-    node.innerHTML = escapeHtml(el.text).replace(/\n/g, '<br>');
+    // Build text content using DOM methods to avoid innerHTML XSS surface
+    (el.text || '').split('\n').forEach((line, i) => {
+      if (i > 0) node.appendChild(document.createElement('br'));
+      node.appendChild(document.createTextNode(line));
+    });
     applyTextStyle(node, el);
 
   } else if (el.type === 'shape') {
@@ -1097,14 +1101,4 @@ function showToast(msg) {
   t.classList.add('show');
   clearTimeout(t._timer);
   t._timer = setTimeout(() => t.classList.remove('show'), 2500);
-}
-
-/* =====================================================================
-   Helpers
-   ===================================================================== */
-function escapeHtml(str) {
-  return (str || '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
 }
